@@ -1,24 +1,34 @@
-# README
+# Explora Admin
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An administration page for the Explora LMS project.
 
-Things you may want to cover:
+## Contributing
 
-* Ruby version
+First, clone this repository:
 
-* System dependencies
+```bash
+git clone https://github.com/aloussase/ExploraAdmin.git
+```
 
-* Configuration
+Then run the following in the repository's directory:
 
-* Database creation
+```bash
+bundle install
+./bin/rails db:migrate
+```
 
-* Database initialization
+After the setup, you can proceed to run the application:
 
-* How to run the test suite
+```bash
+./bin/rails serve
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Now you can visit the application at https://localhost:3000/admin.
 
-* Deployment instructions
+You'll need to create an admin user to be able to log in.
+You can do this by running the following commands:
 
-* ...
+```
+./bin/rails c
+irb(main):001> AdminUser.create(email: "admin@example.com", password: "password")
+```
