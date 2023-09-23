@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Creating new admin users.
+  get "/register", to: "register#index"
+  post "/register", to: "register#create"
 
   # Defines the root path route ("/")
-  # root "articles#index"
+  root "register#index"
 end

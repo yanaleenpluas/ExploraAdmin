@@ -1,0 +1,28 @@
+<div id="register">
+  <h1>Registrarse</h1>
+  <%= image_tag("cute_chicken.jpeg", size: "169") %>
+  <% if flash[:validation_errors] %>
+    <div class="alert">
+      Por favor, llene todos los campos.
+    </div>
+  <% end %>
+  <%= form_with url:  '/register', method: :post do |f| %>
+    <div class="form-item">
+      <%= f.label :name, "Nombre" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="form-item">
+      <%= f.label :last_name, "Apellido" %>
+      <%= f.text_field :last_name %>
+    </div>
+    <div class="form-item">
+      <%= f.label :email, "Correo electrónico" %>
+      <%= f.email_field :email %>
+    </div>
+    <div class="form-item">
+      <%= f.label :password, "Contraseña" %>
+      <%= f.password_field :password %>
+    </div>
+    <%= f.submit value: "Registrarse", id: "register-submit" %>
+  <% end %>
+</div>
