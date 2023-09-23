@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get "/register", to: "register#index"
   post "/register", to: "register#create"
 
-  # Defines the root path route ("/")
-  root "register#index"
+  # Send the user to the dashboard by default.
+  #
+  # This will in turn redirect to the login page
+  # if the user is not logged in.
+  root "admin/dashboard#index"
 end

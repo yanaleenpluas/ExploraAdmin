@@ -7,7 +7,10 @@
 // For example, to change the sidebar width:
 // $sidebar-width: 242px;
 
-// Active Admin's got SASS!
+$primary-color: #ffad33;
+$accent-color: #ffad33;
+$link-color: $accent-color;
+
 @import "active_admin/mixins";
 @import "active_admin/base";
 
@@ -18,7 +21,10 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
-$accent-color: #ffad33;
+
+html {
+  background-color: white;
+}
 
 body {
   background-color: white;
@@ -26,6 +32,13 @@ body {
 }
 
 #wrapper {
+  background-color: white;
+
+  #title_bar {
+    /* NOTE: We might want to unhide this. */
+    display: none;
+  }
+
   .header {
     background-image: none;
     background-color: white;
@@ -61,4 +74,64 @@ body {
       background-color: white;
     }
   }
+}
+
+body.logged_out h1 {
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  text-shadow: none;
+  color: black;
+  font-weight: bold;
+}
+
+body.logged_out #content_wrapper #active_admin_content {
+  box-shadow: none;
+}
+
+body.logged_out #login a {
+  float: none;
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+#login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+
+    input {
+      width: 100%;
+      font-size: 1rem;
+    }
+  }
+}
+
+#login-registrate {
+  margin-top: 0.5rem;
+
+  span a {
+    color: $accent-color;
+  }
+}
+
+#login-submit {
+  background-color: #ffad33;
+  background-image: none;
+  color: black;
+  font-size: 1rem;
+  padding: 0.8rem;
+  width: 80%;
+  margin-top: 1rem;
+  text-shadow: none;
+  border: none;
+  border-radius: 0;
 }

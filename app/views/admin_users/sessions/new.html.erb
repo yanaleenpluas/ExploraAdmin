@@ -1,0 +1,26 @@
+<div id="login">
+  <h1>Iniciar Sesión</h1>
+
+  <%= image_tag("cute_penguin.png", size: "150") %>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-item">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <div class="form-item">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <%= f.submit "Log in", id: "login-submit" %>
+  <% end %>
+
+  <div id="login-registrate">
+    ¿No tienes una cuenta?
+    <span>
+      <a href="/register">Regístrate.</a>
+    </span>
+  </div>
+</div>

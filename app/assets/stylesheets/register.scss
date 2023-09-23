@@ -1,4 +1,7 @@
-#register {
+#register,
+#login {
+  background-image: none;
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,6 +42,14 @@
 
     input {
       width: 100%;
+    }
+  }
+
+  #register-login {
+    margin-top: 0.5rem;
+
+    span a {
+      color: #ffad33;
     }
   }
 
