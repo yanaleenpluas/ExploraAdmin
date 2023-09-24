@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  periodo: one
+  docente: one
+  tipo_institucion: MyString
+  jornada: MyString
+  paralelo: MyString
+  portada: MyString
+  color: MyString
+  materia: MyString
+
+two:
+  periodo: two
+  docente: two
+  tipo_institucion: MyString
+  jornada: MyString
+  paralelo: MyString
+  portada: MyString
+  color: MyString
+  materia: MyString

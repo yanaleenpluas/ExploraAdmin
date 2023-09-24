@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_23_171819) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_24_213703) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -39,4 +39,49 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_23_171819) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "cursos", force: :cascade do |t|
+    t.integer "periodo_id", null: false
+    t.integer "docente_id"
+    t.string "tipo_institucion"
+    t.string "jornada"
+    t.string "paralelo"
+    t.string "portada"
+    t.string "color"
+    t.string "materia"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["docente_id"], name: "index_cursos_on_docente_id"
+    t.index ["periodo_id"], name: "index_cursos_on_periodo_id"
+  end
+
+  create_table "cursos_estudiantes", id: false, force: :cascade do |t|
+    t.integer "estudiante_id", null: false
+    t.integer "curso_id", null: false
+  end
+
+  create_table "docentes", force: :cascade do |t|
+    t.string "nombre", null: false
+    t.string "apellido", null: false
+    t.string "cedula"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "estudiantes", force: :cascade do |t|
+    t.string "nombre", null: false
+    t.string "apellido", null: false
+    t.string "cedula"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "periodos", force: :cascade do |t|
+    t.datetime "fecha_inicio", null: false
+    t.datetime "fecha_fin", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "cursos", "docentes"
+  add_foreign_key "cursos", "periodos"
 end
