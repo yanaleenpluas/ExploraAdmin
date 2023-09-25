@@ -76,6 +76,12 @@ body {
   }
 }
 
+button {
+  &:hover {
+    background-image: none !important;
+  }
+}
+
 @import "classes";
 @import "login";
 @import "dashboard";

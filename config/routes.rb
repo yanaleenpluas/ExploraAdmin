@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   get "/register", to: "register#index"
   post "/register", to: "register#create"
 
+  # Dashboard controller
+  post(
+    "/select_institution/:institution", 
+    to: "dashboard#set_selected_institution"
+  )
+
   # Send the user to the dashboard by default.
   #
   # This will in turn redirect to the login page

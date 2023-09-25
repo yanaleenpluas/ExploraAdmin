@@ -6,20 +6,21 @@ ActiveAdmin.register_page "Dashboard" do
     "Juan Vicente Maldonado",
     "Liceo Albonor",
     "Ciudad de Dios",
-    "Cristobal Colón"
+    "Cristobal Colón",
+    "El Zapatito"
   ]
 
-  class ExploraRectangle < Arbre::Component 
-    builder_method :explora_rectangle
+  class Institution < Arbre::Component 
+    builder_method :institution
     
-    def build(institucion, attributes = {})
+    def build(institution, attributes = {})
       super(attributes)
 
       classes = attributes[:classes] || ""
       classes = "#{classes} rectangle"
 
-      form method: "post" do
-        button institucion, class: classes
+      form method: "post", action: "/select_institution/#{institution}" do
+        button institution, class: classes
       end
     end
   end
@@ -29,8 +30,8 @@ ActiveAdmin.register_page "Dashboard" do
       h1 "Hola, #{current_admin_user.name} #{current_admin_user.last_name}"
       h2 "Escoge tu Institución"
       div id: "instituciones" do
-        instituciones.each_with_index do |institucion, i|
-          explora_rectangle(
+        instituciones.each do |institucion|
+          institution(
             institucion,
             class: "institucion"
           )
