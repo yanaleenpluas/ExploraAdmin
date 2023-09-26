@@ -11,11 +11,14 @@ Rails.application.routes.draw do
     "/select_institution/:institution", 
     to: "dashboard#set_selected_institution"
   )
-  # Period controller
-  resources :periods  
+
+  # Terms controller
+  resources :terms
   post(
-    "/select_period/:period", 
-    to: "period#set_selected_period")
+    "/select_term/:term", 
+    to: "terms#set_selected_term"
+  )
+
   # Send the user to the dashboard by default.
   #
   # This will in turn redirect to the login page

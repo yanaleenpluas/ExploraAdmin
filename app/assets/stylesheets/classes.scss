@@ -1,12 +1,55 @@
 @import "mixins";
 @import "colors";
 
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  .action-button {
+    background-color: $button-1 !important;
+    background-image: none;
+    text-decoration: none;
+    font-size: small;
+    font-weight: lighter;
+    color: black;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .action-button:hover {
+    background-image: none !important;
+    background-color: $button-1-hover !important;
+  }
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.atras {
+  @include app-button;
+  background-color: $button-2;
+  max-width: fit-content;
+  padding: 0.8rem;
+
+  &:hover {
+    background-color: $button-2-hover !important;
+  }
+}
+
 .siguiente {
   @include app-button;
-  background-color: $accent-color;
+  background-color: $button-1;
   max-width: fit-content;
-  align-self: flex-end;
   padding: 0.8rem;
+
+  &:hover {
+    background-color: $button-1-hover;
+  }
 }
 
 .rectangle {
@@ -23,6 +66,6 @@
   font-size: 1rem;
 
   &:hover {
-    background-color: $accent-color;
+    background-color: $accent-color !important;
   }
 }

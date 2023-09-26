@@ -9,6 +9,6 @@ class DashboardController < ApplicationController
     institution = params[:institution]
     session[:institution] = institution
 
-    redirect_to admin_periodo_path
+    redirect_to admin_periodos_path
   end
 end
