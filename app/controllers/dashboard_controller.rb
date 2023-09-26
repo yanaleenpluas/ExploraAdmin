@@ -9,7 +9,6 @@ class DashboardController < ApplicationController
     institution = params[:institution]
     session[:institution] = institution
 
-    # TODO: Redirect to la pagina de washington.
-    redirect_to admin_dashboard_path
+    redirect_to admin_periodo_path
   end
 end
