@@ -34,3 +34,19 @@ rails console like this:
 ./bin/rails c
 irb(main):001> AdminUser.create(name: "John", last_name: "Doe", email: "admin@example.com", password: "password")
 ```
+
+## Making Requests to the Canvas API
+
+To make requests to the canvas API we use the
+[Excon](https://github.com/excon/excon) gem. You need to create a file
+`config/initializers/canvas.rb` with the following contents:
+
+```ruby
+Rails.application.config.canvas_api_key = "..."
+Rails.application.config.canvas_api_base = "..."
+```
+
+Replace with the appropriate values. **DO NOT** push this file to the git repo.
+
+Then you can access these variables from your controller with `$access_token`
+and `$api_base`.
