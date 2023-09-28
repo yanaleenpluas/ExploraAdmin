@@ -22,7 +22,7 @@ ActiveAdmin.register_page "Periodos" do
         periodo = Periodo.find_by(nombre: term[:nombre])
         if periodo
           periodos << periodo
-          return periodos
+          next periodos
         end
 
         logger.debug "Persisting periodo to the database: #{term[:nombre]}"
