@@ -7,18 +7,14 @@ class NavigationButtons < Arbre::Component
     back = attributes[:back]
     forward = attributes[:forward]
 
-    # TODO: Set up the correct paths.
-
     div class: "navigation-buttons" do
       if back 
-        form method: "get", action: back do
-          button "Atras", class: "atras"
-        end
+        a "Atrás", href: back, class: "atras"
       end
       if forward
-        form method: "post", action: forward do
-          button "Siguiente", class: "siguiente"
-        end
+        # NOTE: For this to work the component needs to be
+        # used inside a form with the appropriate action set.
+        button "Siguiente", class: "siguiente"
       end
     end
   end

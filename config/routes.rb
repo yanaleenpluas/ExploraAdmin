@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     to: "terms#set_selected_term"
   )
 
+  # Create course stage 1
+  resources :create_course_stage_1
+
   # Send the user to the dashboard by default.
   #
   # This will in turn redirect to the login page

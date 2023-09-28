@@ -28,7 +28,7 @@
   display: flex;
   justify-content: flex-end;
   padding: 1rem;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .atras {
@@ -36,6 +36,9 @@
   background-color: $button-2;
   max-width: fit-content;
   padding: 0.8rem;
+  text-decoration: none !important;
+  color: black !important;
+  font-weight: bold;
 
   &:hover {
     background-color: $button-2-hover !important;
