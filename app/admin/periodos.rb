@@ -1,37 +1,51 @@
 ActiveAdmin.register_page "Periodos" do
   menu if: Proc.new { session[:institution] }
 
-  terms = [
-    {id: 1, name: "Costa / Galápagos Verano 2023"},
-    {id: 2, name: "Sierra / Amazonia Invierno 2023"},
-    {id: 3, name: "Costa / Galápagos Invierno 2022"},
-    {id: 4, name: "Sierra / Amazonía Verano 2022"},
-    {id: 5, name: "Costa / Galápagos Verano 2022"}
-  ]
-
   class Term < Arbre::Component
     builder_method :term
 
-    def build(period, attributes = {})
+    def build(term, attributes = {})
       super(attributes)
 
       classes = attributes[:classes] || ""
       classes = "#{classes} rectangle"
 
-      form method: "post", action: "/select_term/#{period[:id]}" do
-        button period[:name], class: classes
+      form method: "post", action: "/select_term/#{term[:term_id]}" do
+        button term[:nombre], class: classes
       end
     end
   end
 
   content title: "Periodos" do
+    def get_terms
+      # NOTE: This works under the assumption that the root account is always
+      # id number 2, which is true.
+      response = Excon.get(
+        "#{$api_base}/api/v1/accounts/2/terms",
+        headers: {"Authorization" => "Bearer #{$access_token}"})
+      terms = JSON.parse(response.body, symbolize_names: true)[:enrollment_terms]
+        .collect do |term|
+        {
+          fecha_inicio: term[:start_at],
+          fecha_fin: term[:end_at],
+          term_id: term[:id],
+          nombre: term[:name]
+        }
+      end
+      logger.debug "Got terms: #{terms}"
+
+      # TODO: Persist the terms that do not exist already.
+
+      terms
+    end
+
     h1 "Unidad Educativa #{session[:institution]}"
     tabs do
       tab "Periodos disponibles" do
         div id: "period-view" do
           h2 "Periodos académicos disponibles"
           div id: "periodos" do
-            terms.each do |term|
+            get_terms.each do |term|
               term(
                 term, 
                 class: "periodo"

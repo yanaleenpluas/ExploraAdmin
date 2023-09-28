@@ -18,14 +18,6 @@ ActiveAdmin.register_page "Dashboard" do
   end
 
   content title: proc { I18n.t("active_admin.dashboard") } do
-    def get_subaccounts(account_id)
-      response = Excon.get(
-        "#{$api_base}/api/v1/accounts/#{account_id}/sub_accounts",
-        headers: { "Authorization" => "Bearer #{$access_token}" })
-      subaccounts = JSON.parse(response.body, symbolize_names: true)
-      subaccounts
-    end
-
     def get_admin_account_id
       response = Excon.get(
         "#{$api_base}/api/v1/accounts",
@@ -33,6 +25,14 @@ ActiveAdmin.register_page "Dashboard" do
       accounts = JSON.parse(response.body, symbolize_names: true)
       admin_account_id = accounts[0][:id]
       admin_account_id
+    end
+
+    def get_subaccounts(account_id)
+      response = Excon.get(
+        "#{$api_base}/api/v1/accounts/#{account_id}/sub_accounts",
+        headers: { "Authorization" => "Bearer #{$access_token}" })
+      subaccounts = JSON.parse(response.body, symbolize_names: true)
+      subaccounts
     end
 
     def get_account_admins(account_id)
