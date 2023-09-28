@@ -7,17 +7,15 @@ class TermsController < ApplicationController
   # this case that would be the page for choosing a term to work on.
   def set_selected_term
     session[:term] = params[:term]
-
-    # TODO: Redirect to the next step (Alina's view)
-    # redirect_to admin_jornada_path
-    puts "Periodo seleccionado: #{session[:term]}"
-    redirect_to admin_periodos_path
+    redirect_to admin_create_course_s1_path
   end
 
   # Create a new term.
   def create
+    # TODO: Persist term in the database.
+    # TODO: Create term in Canvas.
     puts term_params
-    redirect_to admin_periodos_path
+    redirect_to admin_create_course_s1_path
   end
 
   private

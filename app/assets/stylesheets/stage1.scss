@@ -1,35 +1,24 @@
-@import "colors";
-
-#course-S1{
-    margin-left: 2.5em
+#course-S1 {
+  margin-left: 2.5em;
 }
 
-#tipo-institucion{
-    h2{
-        font-weight: bold;
-    }
+#tipo-institucion {
+  h2 {
+    font-weight: bold;
+  }
 }
 
-.radio-option{
-    margin-top: 1em;
+.radio-option {
+  margin-top: 1em;
 
-    label{
-        padding: 2em;
-    }
+  label {
+    padding: 2em;
+    font-size: 1rem;
+  }
 
-    label span{
-        font-size: 1.5em;    
-    }
-
-    label input{
-        width: 1.6em;
-        height: 1.6em;
-    }    
-
-}   
-
-.buttons{
-    margin-top: 5em;
-    display: flex;
-    justify-content: end;
+  input {
+    width: 1.6em;
+    height: 1.6em;
+  }
 }
+
