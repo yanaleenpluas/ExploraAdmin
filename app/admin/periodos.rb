@@ -10,13 +10,39 @@ ActiveAdmin.register_page "Periodos" do
       classes = attributes[:classes] || ""
       classes = "#{classes} rectangle"
 
-      form method: "post", action: "/select_term/#{term[:term_id]}" do
-        button term[:nombre], class: classes
+      form method: "post", action: "/select_term/#{term.canvas_term_id}" do
+        button term.nombre, class: classes
       end
     end
   end
 
   content title: "Periodos" do
+    def save_missing_terms(terms)
+      terms.reduce([]) do |periodos, term|
+        periodo = Periodo.find_by(nombre: term[:nombre])
+        if periodo
+          periodos << periodo
+          return periodos
+        end
+
+        logger.debug "Persisting periodo to the database: #{term[:nombre]}"
+        new_periodo = Periodo.create(
+          fecha_inicio: term[:fecha_inicio],
+          fecha_fin: term[:fecha_fin],
+          nombre: term[:nombre],
+          canvas_term_id: term[:term_id])
+
+        if new_periodo.valid?
+          logger.debug "Successfully persisted periodo: #{new_periodo.nombre}"
+          periodos << new_periodo
+        else
+          logger.error "Error while persisting periodo: #{term[:nombre]}"
+        end
+
+        periodos
+      end
+    end
+
     def get_terms
       # NOTE: This works under the assumption that the root account is always
       # id number 2, which is true.
@@ -34,9 +60,10 @@ ActiveAdmin.register_page "Periodos" do
       end
       logger.debug "Got terms: #{terms}"
 
-      # TODO: Persist the terms that do not exist already.
+      logger.debug "Persisting missing terms"
+      periodos = save_missing_terms terms
 
-      terms
+      periodos
     end
 
     h1 "Unidad Educativa #{session[:institution]}"
